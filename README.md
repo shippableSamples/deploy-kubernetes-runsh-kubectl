@@ -24,6 +24,7 @@ on Amazon EC2.
 * All pipeline config is in `shippable.resources.yml` and `shippable.jobs.yml`. Check these files and update config wherever the comment asks you to replace with your specific values
 * Follow instructions to add your [Continuous Deployment pipeline](http://docs.shippable.com/tutorials/pipelines/howToAddSyncRepos/)
 * Right-click on the runSh job in the SPOG view named 'shipdemo-kubectl-deploy-test' and run the job
+  * This demo uses custom scripting jobs called 'runSh' jobs in Shippable - [learn how moe about runSh jobs](http://docs.shippable.com/pipelines/jobs/runSh/) 
 * Your app should be deployed to your Kubernetes cluster as a Test pod
 * Follow instructions to [connect your Continuous Integration project to your Continuous Delivery pipelines](http://docs.shippable.com/tutorials/pipelines/connectingCiPipelines/)
 * Right-click on the runSh job in the SPOG view named 'shipdemo-kubectl-deploy-prod' and run the job to deploy to a Prod pod
