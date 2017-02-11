@@ -1,26 +1,4 @@
 resources:
-  - name: shipdemo-img
-    type: image
-    integration: manishas-dh    #replace with your Docker Hub integration name 
-    pointer:
-      sourceName: "manishas/node-build-push-docker-hub-deploy-kubernetes"  #replace with your image name on Docker Hub
-      isPull: false
-    seed:
-      versionName: "master.1"  #replace with your image tag on Docker Hub
-
-  - name: shipdemo-img-options
-    type: dockerOptions
-    version:
-      portMappings:
-        - 80:80
-
-#kubernetes cluster
-  - name: kube-cluster
-    type: cluster
-    integration: manishas-kube    #replace with your Kubernetes integration name
-
-
-resources:
 
   # resources for sample application running on Kubernetes on AWS
 
@@ -39,7 +17,7 @@ resources:
 ################################
 # Sample Node Aye-Aye component
 
-# application code
+# GitHub repo holding scripts to be used in runSh pipeline job
   - name: shipdemo-repo
     type: gitRepo
     integration: ttrahan-gh # replace with your GitHub integration name
