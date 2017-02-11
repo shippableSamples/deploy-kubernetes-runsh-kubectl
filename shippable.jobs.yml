@@ -1,0 +1,36 @@
+jobs:
+
+# jobs for the sample node app pipeline from CI thru TEST environment
+
+################################
+
+# add pipeline job
+# TEST deployment to Kube cluster on AWS
+  - name: shipdemo-kubectl-deploy-test
+    type: runSh
+    steps:
+      - IN: shipdemo-repo
+        switch: off
+      - IN: shipdemo-int-aws
+      - IN: shipdemo-int-kube
+      - IN: shipdemo-img
+      - IN: shipdemo-params-test 
+      - TASK:
+        - script: . $SHIPDEMOREPO_PATH/gitRepo/pipeline/prepEnvironment.sh
+        - script: . $SHIPDEMOREPO_PATH/gitRepo/pipeline/deploy.sh
+
+# add pipeline job
+# PROD deployment to Kube cluster on AWS
+  - name: shipdemo-kubectl-deploy-prod
+    type: runSh
+    steps:
+      - IN: shipdemo-kubectl-deploy-test
+        switch: off
+      - IN: shipdemo-repo
+        switch: off
+      - IN: shipdemo-int-aws
+      - IN: shipdemo-int-kube
+      - IN: shipdemo-params-prod
+      - TASK:
+        - script: . $SHIPDEMOREPO_PATH/gitRepo/pipeline/prepEnvironment.sh
+        - script: . $SHIPDEMOREPO_PATH/gitRepo/pipeline/deploy.sh
