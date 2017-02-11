@@ -12,6 +12,7 @@ fi
 
 # for each yaml template, generate an updated deploySpec
 ENVIRONMENT=$(echo "$ENVIRONMENT" | awk '{print tolower($0)}')
+ls -al $GIT_REPO_PATH/pipeline/deployTemplates
 for file in $GIT_REPO_PATH/pipeline/deployTemplates/*.yaml; do
   TEMPLATE=$file
   baseFile=${file##*/}
