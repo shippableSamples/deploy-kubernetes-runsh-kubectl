@@ -1,6 +1,6 @@
 ![AyeAye](https://github.com/shippableSamples/node-build-push-docker-hub/blob/master/public/resources/images/captain.png)
 
-# Docker Build, Continuous Integration, and Deployment to Kubernetes for a Node JS application
+# Docker Build, Continuous Integration, and Deployment to Kubernetes using Kubectl CLI for a Node JS application
 [![Run Status](https://api.shippable.com/projects/5885ecca11c45a1000af5760/badge?branch=master)](https://app.shippable.com/projects/5885ecca11c45a1000af5760)
 [![Coverage Badge](https://api.shippable.com/projects/5885ecca11c45a1000af5760/coverageBadge?branch=master)](https://app.shippable.com/projects/5885ecca11c45a1000af5760)
 
