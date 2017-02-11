@@ -43,7 +43,7 @@ Your end-to-end pipeline is complete! Now, any change you make to the applicatio
 
 #### Launch a Kubernetes cluster for this demo
 
-Instructions for launching a Kubernetes cluster using KOPS:
+Instructions for launching a Kubernetes cluster using KOPS:  
 https://kubernetes.io/docs/getting-started-guides/kops/
 
 Determine settings for your cluster:  
@@ -72,5 +72,5 @@ Delete the cluster:
 kops delete cluster $YOUR_CLUSTER_DOMAIN_NAME --yes
 ```
 
-To add ability to pull images from private registry:
+To add ability to pull images from private registry:  
 https://kubernetes.io/docs/user-guide/images/#specifying-imagepullsecrets-on-a-pod
