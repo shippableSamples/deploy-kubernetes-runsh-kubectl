@@ -9,10 +9,10 @@ install_KubectlCli() {
   fi
 
   # Write credentials to ~/.kube/config
-  if [[ ! -z $INTKUBE_INTEGRATION_MASTERKUBECONFIGCONTENT ]]; then
+  if [[ ! -z $SHIPDEMOINTKUBE_INTEGRATION_MASTERKUBECONFIGCONTENT ]]; then
     # from Shippable Kubernetes account integration specified as input to job
     echo "kube config created from shippable integration"
-    echo "$INTKUBE_INTEGRATION_MASTERKUBECONFIGCONTENT" > ~/.kube/config
+    echo "$SHIPDEMOINTKUBE_INTEGRATION_MASTERKUBECONFIGCONTENT" > ~/.kube/config
   else
     # from S3 bucket
     aws s3 cp s3://clusters.example-kube-cluster.com/config ~/.kube/config

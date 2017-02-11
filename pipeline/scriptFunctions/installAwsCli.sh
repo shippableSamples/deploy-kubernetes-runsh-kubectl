@@ -8,7 +8,7 @@ install_AwsCli() {
   if [[ ! -d ~/.aws ]]; then
     mkdir ~/.aws
   fi
-  echo -e "[shippable]\naws_access_key_id=$INTAWS_INTEGRATION_AWS_ACCESS_KEY_ID\naws_secret_access_key=$INTAWS_INTEGRATION_AWS_SECRET_ACCESS_KEY" >> ~/.aws/credentials
+  echo -e "[shippable]\naws_access_key_id=$SHIPDEMOINTAWS_INTEGRATION_AWS_ACCESS_KEY_ID\naws_secret_access_key=$SHIPDEMOINTAWS_INTEGRATION_AWS_SECRET_ACCESS_KEY" >> ~/.aws/credentials
   export AWS_DEFAULT_PROFILE=shippable
 
   # install Python and PIP if not installed
