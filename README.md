@@ -15,7 +15,7 @@ on Amazon EC2.
 * Fork this repo into your source code account (e.g. GitHub)
 * Login into [Shippable](wwww.shippable.com) with this account
 * Create an [integration](http://docs.shippable.com/integrations/imageRegistries/dockerHub/) on Shippable for your Docker Hub account
-* Update the CI configuration in `shippable.yml` file for your integration names (see comments in file)
+* Update the CI configuration in `shippable.yml` file with your integration names (see comments in file)
 * Follow these [setup instructions](http://docs.shippable.com/ci/runFirstBuild/) to enable your forked repo for CI and run a build 
 
 ## Add Continuous Delivery pipelines to deploy to Kubernetes
