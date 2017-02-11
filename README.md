@@ -40,3 +40,36 @@ Your end-to-end pipeline is complete! Now, any change you make to the applicatio
 
 ### CD Pipeline
 ![CD Pipeline](https://github.com/shippableSamples/node-build-push-docker-hub-deploy-kubernetes-kubectl/blob/master/public/resources/images/deployment-pipeline-to-kubernetes.png)
+
+#### Launch a Kubernetes cluster for this demo
+
+Instructions for launching a Kubernetes cluster using KOPS:
+https://kubernetes.io/docs/getting-started-guides/kops/
+
+CLUSTER_DOMAIN_NAME="your.cluster-name.com"
+ZONE="your_aws_zone" # e.g. us-east-1c
+
+Build the cluster configuration (replace the zone and cluster name with your values):
+```
+kops create cluster --zones=$ZONE $CLUSTER_DOMAIN_NAME 
+```
+
+Create the cluster in AWS:
+```
+kops update cluster $CLUSTER_DOMAIN_NAME 
+```
+
+To add a Kube UI:
+```
+kubectl create -f https://raw.githubusercontent.com/kubernetes/kops/master/addons/kubernetes-dashboard/v1.4.0.yaml
+kubectl proxy
+```
+Then navigate to http://127.0.0.1:8001/ui
+
+Delete the cluster:
+```
+kops delete cluster $CLUSTER_DOMAIN_NAME --yes
+```
+
+To add ability to pull images from private registry:
+https://kubernetes.io/docs/user-guide/images/#specifying-imagepullsecrets-on-a-pod
