@@ -6,7 +6,9 @@ echo "deploying to Kubernetes cluster..."
 kubectl config use-context $CLUSTER
 
 # remove any prior/sample deploySpecs
-rm $GIT_REPO_PATH/pipeline/deploySpecs/*.yaml
+if [[ -d $GIT_REPO_PATH/pipeline/deploySpecs ]]; then
+  rm $GIT_REPO_PATH/pipeline/deploySpecs/*.yaml
+fi
 
 # for each yaml template, generate an updated deploySpec
 ENVIRONMENT=$(echo "$ENVIRONMENT" | awk '{print tolower($0)}')

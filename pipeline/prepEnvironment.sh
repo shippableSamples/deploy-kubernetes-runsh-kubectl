@@ -14,7 +14,6 @@ done
 install_ShellTools
 
 # install required CLIs
-install_AwsCli
 install_KubectlCli
 
 # Leverage the environment variables that were automatically injected
