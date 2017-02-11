@@ -46,7 +46,8 @@ Your end-to-end pipeline is complete! Now, any change you make to the applicatio
 Instructions for launching a Kubernetes cluster using KOPS:
 https://kubernetes.io/docs/getting-started-guides/kops/
 
-YOUR_CLUSTER_DOMAIN_NAME="your.cluster-name.com"
+Determine settings for your cluster:  
+YOUR_CLUSTER_DOMAIN_NAME="your.cluster-name.com"  
 YOUR_ZONE="your_aws_zone" # e.g. us-east-1c
 
 Build the cluster configuration (replace the zone and cluster name with your values):
