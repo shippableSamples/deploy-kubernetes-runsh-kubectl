@@ -12,6 +12,7 @@ fi
 
 # for each yaml template, generate an updated deploySpec
 ENVIRONMENT=$(echo "$ENVIRONMENT" | awk '{print tolower($0)}')
+echo "preparing kubernetes yaml files for "$ENVIRONMENT
 for file in $GIT_REPO_PATH/gitRepo/pipeline/deployTemplates/*.yaml; do
   TEMPLATE=$file
   baseFile=${file##*/}

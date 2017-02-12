@@ -32,7 +32,7 @@ save_state_files() {
 # Load state
 load_incoming_state_variables() {
   STATE_LOAD_LOCATION=$INCOMING_STATE_PATH
-  echo -e "\n*** loading state - variables ***"
+  echo -e "\n*** loading state from incoming job - variables ***"
   ls -l $STATE_LOAD_LOCATION
   if [[ -f $STATE_LOAD_LOCATION/variable_state.env ]]; then
     source $STATE_LOAD_LOCATION/variable_state.env
