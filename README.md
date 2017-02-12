@@ -6,10 +6,11 @@
 
 
 A simple Node JS application with unit tests and coverage reports using mocha
-and istanbul. It does a docker build once CI passes and then pushes the image
-to Docker Hub. Upon every successful Every time push to Docker Hub, it is 
-automatically deployed to a TEST environment in a Kubernetes cluster running 
-on Amazon EC2.
+and istanbul. This demonstrates the following features:
+* Performing a docker build after CI passes, then pushes image to Docker Hub
+* Upon successful push to Docker Hub, automatically deploy image to a TEST 
+environment in a Kubernetes cluster running on Amazon EC2
+* Deployment to Kubernetes cluster using `kubectl` CLI via `runSh` job type
 
 ## Run CI for this repo on Shippable
 * Fork this repo into your source code account (e.g. GitHub)
