@@ -55,15 +55,15 @@ integrations:
 
     # Sending webhook to notify Shippable pipeline of new image tag available 
     # http://docs.shippable.com/tutorials/pipelines/connectingCiPipelines/
-    # UNCOMMENT BELOW LINES AFTER ADDING PIPELINE TO SPOG VIEW
-    - integrationName: trigger-shipdemo-img
-      type: webhook
-      payload:
-        - versionName=$BRANCH.$BUILD_NUMBER
-      branches:
-        only:
-          - master
-      on_success: always
-      on_failure: never
-      on_start: never
+    # UNCOMMENT LINES BELOW THIS AFTER ADDING PIPELINE TO SPOG VIEW
+    # - integrationName: trigger-shipdemo-img
+    #   type: webhook
+    #   payload:
+    #     - versionName=$BRANCH.$BUILD_NUMBER
+    #   branches:
+    #     only:
+    #       - master
+    #   on_success: always
+    #   on_failure: never
+    #   on_start: never
 
