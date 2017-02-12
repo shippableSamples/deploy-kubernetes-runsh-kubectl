@@ -16,6 +16,7 @@ jobs:
       - IN: shipdemo-img
       - IN: shipdemo-params-test 
       - TASK:
+        - script: printenv | grep "SHIPDEMO"
         - script: . $SHIPDEMOREPO_PATH/gitRepo/pipeline/prepEnvironment.sh
         - script: . $SHIPDEMOREPO_PATH/gitRepo/pipeline/deploy.sh
 
