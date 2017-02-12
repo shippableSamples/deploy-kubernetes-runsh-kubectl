@@ -6,11 +6,13 @@
 
 
 A simple Node JS application with unit tests and coverage reports using mocha
-and istanbul. This demonstrates the following features:
-* Performing a docker build after CI passes, then pushes image to Docker Hub
+and istanbul. This repo demonstrates the following features:
+* Perform a docker build after CI tests pass, then push image to Docker Hub
 * Upon successful push to Docker Hub, automatically deploy image to a TEST 
 environment in a Kubernetes cluster running on Amazon EC2
-* Deployment to Kubernetes cluster using `kubectl` CLI via `runSh` job type
+* Manually deploy to PROD environment
+* Deployments using `kubectl` CLI via Shippable's `runSh` job type (for 
+declarative deploy job, see [this sample project](https://github.com/shippableSamples/node-build-push-docker-hub-deploy-kubernetes)
 
 ## Run CI for this repo on Shippable
 * Fork this repo into your source code account (e.g. GitHub)
@@ -34,14 +36,14 @@ environment in a Kubernetes cluster running on Amazon EC2
 
 Your end-to-end pipeline is complete! Now, any change you make to the application will be deployed to your Kubernetes Test pod and be ready to manually deploy a Prod pod, as well.
 
-### CI Console Log
-![CI Console Log](https://github.com/shippableSamples/node-build-push-docker-hub-deploy-kubernetes-kubectl/blob/master/public/resources/images/console-log.png)
+### CI console screenshot
+![CI Console Log](https://github.com/shippableSamples/node-build-push-docker-hub-runSh-kubernetes-kubectl/blob/master/public/resources/images/console-log.png)
 
-### CI Integration View
-![CI Integration View](https://github.com/shippableSamples/node-build-push-docker-hub-deploy-kubernetes-kubectl/blob/master/public/resources/images/trigger-deploy-kubernetes.png)
+### Kubernetes integration screenshot
+![CI Integration View](https://github.com/shippableSamples/node-build-push-docker-hub-runSh-kubernetes-kubectl/blob/master/public/resources/images/trigger-deploy-kubernetes.png)
 
-### CD Pipeline
-![CD Pipeline](https://github.com/shippableSamples/node-build-push-docker-hub-deploy-kubernetes-kubectl/blob/master/public/resources/images/deployment-pipeline-to-kubernetes.png)
+### CD Pipeline SPOG screenshot
+![CD Pipeline](https://github.com/shippableSamples/node-build-push-docker-hub-runSh-kubernetes-kubectl/blob/master/public/resources/images/shipdemo-kubectl-deploy.png)
 
 #### Launch a Kubernetes cluster for this demo
 
