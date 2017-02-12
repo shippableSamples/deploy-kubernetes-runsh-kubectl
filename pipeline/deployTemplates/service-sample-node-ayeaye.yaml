@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-sample-node-ayeaye-$ENVIRONMENT
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+  selector:
+    app: sample-node-ayeaye
+    env: $ENVIRONMENT
+  type: LoadBalancer
