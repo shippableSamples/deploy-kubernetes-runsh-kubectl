@@ -6,23 +6,22 @@ echo "deploying to Kubernetes cluster..."
 kubectl config use-context $CLUSTER
 
 # remove any prior/sample deploySpecs
-if [[ -d $GIT_REPO_PATH/pipeline/deploySpecs ]]; then
-  rm $GIT_REPO_PATH/pipeline/deploySpecs/*.yaml
+if [[ -d $GIT_REPO_PATH/gitRepo/pipeline/deploySpecs ]]; then
+  rm $GIT_REPO_PATH/gitRepo/pipeline/deploySpecs/*.yaml
 fi
 
 # for each yaml template, generate an updated deploySpec
 ENVIRONMENT=$(echo "$ENVIRONMENT" | awk '{print tolower($0)}')
-ls -al $GIT_REPO_PATH/pipeline/deployTemplates
-for file in $GIT_REPO_PATH/pipeline/deployTemplates/*.yaml; do
+for file in $GIT_REPO_PATH/gitRepo/pipeline/deployTemplates/*.yaml; do
   TEMPLATE=$file
   baseFile=${file##*/}
   deploymentName=${baseFile%.yaml}-$ENVIRONMENT
   DEST=$(echo $deploymentName | sed 's/-template//')
-  envsubst < $TEMPLATE > $GIT_REPO_PATH/pipeline/deploySpecs/$DEST.yaml
+  envsubst < $TEMPLATE > $GIT_REPO_PATH/gitRepo/pipeline/deploySpecs/$DEST.yaml
 done;
 
 # for each deploySpec, execute deployment to Kube cluster
-for file in $GIT_REPO_PATH/pipeline/deploySpecs/*.yaml; do
+for file in $GIT_REPO_PATH/gitRepo/pipeline/deploySpecs/*.yaml; do
   echo "processing "$file
   baseFile=${file##*/}
   deploymentName=${baseFile%.yaml}
