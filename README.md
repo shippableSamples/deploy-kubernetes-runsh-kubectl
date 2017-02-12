@@ -10,13 +10,13 @@ and istanbul. This repo demonstrates the following features:
 * Perform a docker build after CI tests pass, then push image to Docker Hub
 * Upon successful push to Docker Hub, automatically deploy image to a TEST 
 environment in a Kubernetes cluster running on Amazon EC2
-* Manually deploy to PROD environment
+* Manual deployment (i.e. user initiated, instead of automatic)
 * Deployments using `kubectl` CLI via Shippable's `runSh` job type (for 
 declarative deploy job, see [this sample project](https://github.com/shippableSamples/node-build-push-docker-hub-deploy-kubernetes)
 
 ## Run CI for this repo on Shippable
 * Fork this repo into your source code account (e.g. GitHub)
-* Login into [Shippable](wwww.shippable.com) with this account
+* Create an account (or login) on [Shippable](www.shippable.com) with your SCM account
 * Create an [integration](http://docs.shippable.com/integrations/imageRegistries/dockerHub/) on Shippable for your Docker Hub account
 * Update the CI configuration in `shippable.yml` file with your integration names (see comments in file)
 * Follow these [setup instructions](http://docs.shippable.com/ci/runFirstBuild/) to enable your forked repo for CI and run a build 

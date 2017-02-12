@@ -15,7 +15,7 @@ env:
     - CODE_COVERAGE_DIR=$SHIPPABLE_REPO_DIR/shippable/codecoverage
     - TESTS_LOC_DIR=$SHIPPABLE_REPO_DIR/tests
     - MOD_LOC=$SHIPPABLE_REPO_DIR/node_modules/.bin/
-    - DOCKER_REPO=node-build-push-docker-hub-deploy-kubernetes-kubectl
+    - DOCKER_REPO=node-build-push-docker-hub-runSh-kubernetes-kubectl
     - DOCKER_ACC=ttrahan # {account name}
 
 build:
