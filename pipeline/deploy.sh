@@ -26,12 +26,12 @@ for file in $GIT_REPO_PATH/gitRepo/pipeline/deploySpecs/*.yaml; do
   baseFile=${file##*/}
   deploymentName=${baseFile%.yaml}
   kubectl apply -f $file --record
-  STATUS=""
-  while [[ "$STATUS" != *"successfully rolled out"* ]]; do
-    STATUS=$(kubectl rollout status deployments $deploymentName)
-    echo -e $STATUS"\n"
-    sleep 1
-  done
+  # STATUS=""
+  # while [[ "$STATUS" != *"successfully rolled out"* ]]; do
+  #   STATUS=$(kubectl rollout status deployments $deploymentName)
+  #   echo -e $STATUS"\n"
+  #   sleep 1
+  # done
 done;
 
 # # save State to be used in subsequent jobs or next time this job runs. Pass variable names or files (with path) as parameters
