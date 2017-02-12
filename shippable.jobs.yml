@@ -32,5 +32,6 @@ jobs:
       - IN: shipdemo-int-kube
       - IN: shipdemo-params-prod
       - TASK:
+        - script: printenv | grep "SHIPDEMOPARAMS"
         - script: . $SHIPDEMOREPO_PATH/gitRepo/pipeline/prepEnvironment.sh
         - script: . $SHIPDEMOREPO_PATH/gitRepo/pipeline/deploy.sh
