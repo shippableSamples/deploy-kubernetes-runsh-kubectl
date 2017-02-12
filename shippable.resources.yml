@@ -17,12 +17,12 @@ resources:
 ################################
 # Sample Node Aye-Aye component
 
-# GitHub repo holding scripts to be used in runSh pipeline job
+# GitHub repo holding scripts to be used in runsh pipeline job
   - name: shipdemo-repo
     type: gitRepo
     integration: ttrahan-gh # replace with your GitHub integration name
     pointer:
-      sourceName: ttrahan/node-build-push-docker-hub-runSh-kubernetes-kubectl # replace with source code location (e.g. GitHub) where you cloned this sample project
+      sourceName: ttrahan/node-build-push-docker-hub-runsh-kubernetes-kubectl # replace with source code location (e.g. GitHub) where you cloned this sample project
       branch: master
 
 # Docker Image
@@ -30,7 +30,7 @@ resources:
     type: image
     integration: ttrahan-dh # replace with your Registry/Hub integration name
     pointer:
-      sourceName: ttrahan/node-build-push-docker-hub-runSh-kubernetes-kubectl # replace with docker registry location where you push the images
+      sourceName: ttrahan/node-build-push-docker-hub-runsh-kubernetes-kubectl # replace with docker registry location where you push the images
     seed:
       versionName: master.1
 
