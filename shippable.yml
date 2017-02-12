@@ -37,18 +37,33 @@ build:
 # Integrations are used to connect external resources to CI
 # http://docs.shippable.com/integrations/overview/
 integrations:
-# http://docs.shippable.com/ci/shippableyml/#notifications
+# adding docker hub integration so that credentials are available to CI Job
+# http://docs.shippable.com/integrations/imageRegistries/dockerHub/
+  hub:
+    - integrationName: ttrahan-dh # replace with your Docker Hub integration name
+      type: docker
+
+  # http://docs.shippable.com/ci/shippableyml/#notifications
   notifications:
-# turning of email for PR builds, get notified only on failure and change in status
-# http://docs.shippable.com/integrations/notifications/email/
+    # turns off email for PR builds, notifies only on failure or change in status
+    # http://docs.shippable.com/integrations/notifications/email/
     - integrationName: email
       type: email
       on_success: change
       on_failure: always
       on_pull_request: never
 
-# adding docker hub integration so that credentials are available to CI Job
-# http://docs.shippable.com/integrations/imageRegistries/dockerHub/
-  hub:
-    - integrationName: ttrahan-dh # replace with your Docker Hub integration name
-      type: docker
+    # Sending webhook to notify Shippable pipeline of new image tag available 
+    # http://docs.shippable.com/tutorials/pipelines/connectingCiPipelines/
+    # UNCOMMENT BELOW LINES AFTER ADDING PIPELINE TO SPOG VIEW
+    - integrationName: trigger-shipdemo-img
+      type: webhook
+      payload:
+        - versionName=$BRANCH.$BUILD_NUMBER
+      branches:
+        only:
+          - master
+      on_success: always
+      on_failure: never
+      on_start: never
+
