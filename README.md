@@ -29,7 +29,7 @@ declarative deploy job, see [this sample project](https://github.com/shippableSa
 * Right-click on the runSh job in the SPOG view named 'shipdemo-kubectl-deploy-test' and run the job
   * This demo uses custom scripting jobs called 'runSh' jobs in Shippable - [learn how moe about runSh jobs](http://docs.shippable.com/pipelines/jobs/runSh/) 
 * Your app should be deployed to your Kubernetes cluster as a Test pod
-* Follow instructions to [connect your Continuous Integration project to your Continuous Delivery pipelines](http://docs.shippable.com/tutorials/pipelines/connectingCiPipelines/)
+* Follow instructions to [connect your Continuous Integration project to your Continuous Delivery pipelines](http://docs.shippable.com/tutorials/pipelines/connectingCiPipelines/)(for this demo, just uncomment the `trigger` integration in shippable.yml)
 * Right-click on the runSh job in the SPOG view named 'shipdemo-kubectl-deploy-prod' and run the job to deploy to a Prod pod
 * Make a change to your forked repo and commit to GitHub - watch your pipeline automatically execute CI with push to Docker Hub and automatic deployment to the Test environment in Kubernetes
 * Then right-click to deploy the newest changes to the Prod environment
