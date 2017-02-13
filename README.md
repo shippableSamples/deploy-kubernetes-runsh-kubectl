@@ -6,13 +6,17 @@
 
 
 A simple Node JS application with unit tests and coverage reports using mocha
-and istanbul. This repo demonstrates the following features:
-* Perform a docker build after CI tests pass, then push image to Docker Hub
-* Upon successful push to Docker Hub, automatically deploy image to a TEST 
-environment in a Kubernetes cluster running on Amazon EC2
-* Manual deployment (i.e. user initiated, instead of automatic)
-* Deployments using `kubectl` CLI via Shippable's `runSh` job type (for 
-declarative deploy job, see [this sample project](https://github.com/shippableSamples/node-build-push-docker-hub-deploy-kubernetes)
+and istanbul.   
+
+This repo demonstrates the following features:
+* Set up serverless CI, i.e. on Shippable-provided infrastructure
+* Set up CD pipelines for a Kubernetes cluster running on Amazon EC2
+* Perform CI tests
+* Perform docker build and push image to Docker Hub
+* Automatically deploy image to TEST environment 
+* Manually deploy image to PROD environment 
+* Set up runSh job type in Shippable using `kubectl` CLI (for 
+declarative deploy job, see [this sample project](https://github.com/shippableSamples/node-build-push-docker-hub-deploy-kubernetes))
 
 ## Run CI for this repo on Shippable
 * Fork this repo into your source code account (e.g. GitHub)
