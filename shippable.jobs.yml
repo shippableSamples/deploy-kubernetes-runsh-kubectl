@@ -18,6 +18,8 @@ jobs:
       - TASK:
         - script: . $SHIPDEMOREPO_PATH/gitRepo/pipeline/prepEnvironment.sh
         - script: . $SHIPDEMOREPO_PATH/gitRepo/pipeline/deploy.sh
+  - flags:
+    - runSh-kubernetes-kubectl
 
 # add pipeline job
 # PROD deployment to Kube cluster on AWS
@@ -34,3 +36,5 @@ jobs:
       - TASK:
         - script: . $SHIPDEMOREPO_PATH/gitRepo/pipeline/prepEnvironment.sh
         - script: . $SHIPDEMOREPO_PATH/gitRepo/pipeline/deploy.sh
+  - flags:
+    - runSh-kubernetes-kubectl
