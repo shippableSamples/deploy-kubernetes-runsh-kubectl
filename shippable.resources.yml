@@ -4,43 +4,34 @@ resources:
 
 ################################
 
-# Integration to that stores Kubernetes credentials
-  - name: shipdemo-int-kube
-    type: integration
-    integration: ttrahan-kube #replace with your Kubernetes integration name
-  - flags:
-    - runSh-kubernetes-kubectl
-
-# Integration to that stores AWS credentials
-  - name: shipdemo-int-aws
-    type: integration
-    integration: ttrahan-aws # replace with your AWS integration name
-  - flags:
-    - runSh-kubernetes-kubectl
+# config for kubectl config
+  - name: shipdemo-cli-kubectl
+    type: cliConfig
+    integration: ttrahan-kube
 
 ################################
 # Sample Node Aye-Aye component
 
 # GitHub repo holding scripts to be used in runsh pipeline job
-  - name: shipdemo-repo
+  - name: shipdemo-cli-repo
     type: gitRepo
     integration: ttrahan-gh # replace with your GitHub integration name
     pointer:
-      sourceName: ttrahan/node-build-push-docker-hub-runsh-kubernetes-kubectl # replace with source code location (e.g. GitHub) where you cloned this sample project
+      sourceName: ttrahan/node-build-push-docker-hub-runcli-kubernetes-kubectl # replace with source code location (e.g. GitHub) where you cloned this sample project
       branch: master
   - flags:
-    - runSh-kubernetes-kubectl
+    - runCLI-kubernetes-kubectl
 
 # Docker Image
   - name: shipdemo-img
     type: image
     integration: ttrahan-dh # replace with your Registry/Hub integration name
     pointer:
-      sourceName: ttrahan/node-build-push-docker-hub-runsh-kubernetes-kubectl # replace with docker registry location where you push the images
+      sourceName: ttrahan/node-build-push-docker-hub-runcli-kubernetes-kubectl # replace with docker registry location where you push the images
     seed:
       versionName: master.1
   - flags:
-    - runSh-kubernetes-kubectl
+    - runCLI-kubernetes-kubectl
 
 ################################
 # TEST environment
@@ -57,7 +48,7 @@ resources:
         CPUSHARES: .25
         REPLICAS: 1
   - flags:
-    - runSh-kubernetes-kubectl
+    - runCLI-kubernetes-kubectl
 
 ################################
 # PROD environment
@@ -74,4 +65,4 @@ resources:
         CPUSHARES: .5
         REPLICAS: 2 
   - flags:
-    - runSh-kubernetes-kubectl
+    - runCLI-kubernetes-kubectl

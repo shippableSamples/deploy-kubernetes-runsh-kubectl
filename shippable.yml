@@ -34,6 +34,10 @@ build:
     - docker build -t $DOCKER_ACC/$DOCKER_REPO:$BRANCH.$BUILD_NUMBER .
     - docker push $DOCKER_ACC/$DOCKER_REPO:$BRANCH.$BUILD_NUMBER
 
+  on_success:
+    - echo versionName=$BRANCH.$BUILD_NUMBER > /build/state/shipdemo-img.env
+  
+
 # Integrations are used to connect external resources to CI
 # http://docs.shippable.com/integrations/overview/
 integrations:
@@ -53,17 +57,17 @@ integrations:
       on_failure: always
       on_pull_request: never
 
-    # Sending webhook to notify Shippable pipeline of new image tag available 
-    # http://docs.shippable.com/tutorials/pipelines/connectingCiPipelines/
-    # UNCOMMENT LINES BELOW THIS AFTER ADDING PIPELINE TO SPOG VIEW
-    - integrationName: trigger-shipdemo-img
-      type: webhook
-      payload:
-        - versionName=$BRANCH.$BUILD_NUMBER
-      branches:
-        only:
-          - master
-      on_success: always
-      on_failure: never
-      on_start: never
+    # # Sending webhook to notify Shippable pipeline of new image tag available
+    # # http://docs.shippable.com/tutorials/pipelines/connectingCiPipelines/
+    # # UNCOMMENT LINES BELOW THIS AFTER ADDING PIPELINE TO SPOG VIEW
+    # - integrationName: trigger-shipdemo-img
+    #   type: webhook
+    #   payload:
+    #     - versionName=$BRANCH.$BUILD_NUMBER
+    #   branches:
+    #     only:
+    #       - master
+    #   on_success: always
+    #   on_failure: never
+    #   on_start: never
 

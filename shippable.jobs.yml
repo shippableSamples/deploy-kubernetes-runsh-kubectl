@@ -4,37 +4,40 @@ jobs:
 
 ################################
 
-# add pipeline job
+# runCI job that builds and pushes artifact to S3
+  - name: node-dockerhub-runcli-kubernetes-kubectl_runCI
+    type: runCI
+    steps:
+      - OUT: shipdemo-img-kubectl-cli
+
 # TEST deployment to Kube cluster on AWS
   - name: shipdemo-kubectl-deploy-test
-    type: runSh
+    type: runCLI
     steps:
       - IN: shipdemo-repo
         switch: off
-      - IN: shipdemo-int-aws
-      - IN: shipdemo-int-kube
-      - IN: shipdemo-img
+      - IN: shipdemo-cli-kubectl
+      - IN: shipdemo-img-kubectl-cli
       - IN: shipdemo-params-test 
       - TASK:
         - script: . $SHIPDEMOREPO_PATH/gitRepo/pipeline/prepEnvironment.sh
         - script: . $SHIPDEMOREPO_PATH/gitRepo/pipeline/deploy.sh
   - flags:
-    - runSh-kubernetes-kubectl
+    - runCLI-kubernetes-kubectl
 
 # add pipeline job
 # PROD deployment to Kube cluster on AWS
   - name: shipdemo-kubectl-deploy-prod
-    type: runSh
+    type: runCLI
     steps:
       - IN: shipdemo-kubectl-deploy-test
         switch: off
       - IN: shipdemo-repo
         switch: off
-      - IN: shipdemo-int-aws
-      - IN: shipdemo-int-kube
+      - IN: shipdemo-cli-kubectl
       - IN: shipdemo-params-prod
       - TASK:
         - script: . $SHIPDEMOREPO_PATH/gitRepo/pipeline/prepEnvironment.sh
         - script: . $SHIPDEMOREPO_PATH/gitRepo/pipeline/deploy.sh
   - flags:
-    - runSh-kubernetes-kubectl
+    - runCLI-kubernetes-kubectl
