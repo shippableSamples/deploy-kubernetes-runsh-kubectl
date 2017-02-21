@@ -4,12 +4,12 @@ jobs:
 
 ################################
 
-# runCI job that builds and pushes artifact to S3
-  - name: node-dockerhub-runcli-kubernetes-kubectl_runCI
-    type: runCI
-    steps:
-      - OUT: shipdemo-img
-
+# # runCI job that builds and pushes artifact to S3
+#   - name: node-dockerhub-runcli-kubernetes-kubectl_runCI
+#     type: runCI
+#     steps:
+#       - OUT: shipdemo-img
+#
 # TEST deployment to Kube cluster on AWS
   - name: shipdemo-kubectl-deploy-test
     type: runCLI
