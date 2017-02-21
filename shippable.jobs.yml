@@ -10,20 +10,20 @@ jobs:
 #     steps:
 #       - OUT: shipdemo-img
 #
-# TEST deployment to Kube cluster on AWS
-  - name: shipdemo-kubectl-deploy-test
-    type: runCLI
-    steps:
-      - IN: shipdemo-repo
-        switch: off
-      - IN: shipdemo-cli-kubectl
-      - IN: shipdemo-img
-      - IN: shipdemo-params-test 
-      - TASK:
-        - script: . $SHIPDEMOREPO_PATH/gitRepo/pipeline/prepEnvironment.sh
-        - script: . $SHIPDEMOREPO_PATH/gitRepo/pipeline/deploy.sh
-  - flags:
-    - runCLI-kubernetes-kubectl
+# # TEST deployment to Kube cluster on AWS
+#   - name: shipdemo-kubectl-deploy-test
+#     type: runCLI
+#     steps:
+#       - IN: shipdemo-repo
+#         switch: off
+#       - IN: shipdemo-cli-kubectl
+#       - IN: shipdemo-img
+#       - IN: shipdemo-params-test
+#       - TASK:
+#         - script: . $SHIPDEMOREPO_PATH/gitRepo/pipeline/prepEnvironment.sh
+#         - script: . $SHIPDEMOREPO_PATH/gitRepo/pipeline/deploy.sh
+#   - flags:
+#     - runCLI-kubernetes-kubectl
 
 # add pipeline job
 # PROD deployment to Kube cluster on AWS
