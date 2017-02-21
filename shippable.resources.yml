@@ -27,7 +27,7 @@ resources:
     type: image
     integration: ttrahan-dh # replace with your Registry/Hub integration name
     pointer:
-      sourceName: ttrahan/node-build-push-docker-hub-runcli-kubernetes-kubectl # replace with docker registry location where you push the images
+      sourceName: ttrahan/node-dockerhub-runcli-kubernetes-kubectl # replace with docker registry location where you push the images
     seed:
       versionName: master.1
   - flags:
