@@ -13,7 +13,7 @@ resources:
 # Sample Node Aye-Aye component
 
 # GitHub repo holding scripts to be used in runsh pipeline job
-  - name: shipdemo-cli-repo
+  - name: shipdemo-repo
     type: gitRepo
     integration: ttrahan-gh # replace with your GitHub integration name
     pointer:
