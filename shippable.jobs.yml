@@ -8,7 +8,7 @@ jobs:
   - name: node-dockerhub-runcli-kubernetes-kubectl_runCI
     type: runCI
     steps:
-      - OUT: shipdemo-img-kubectl
+      - OUT: shipdemo-img
 
 # TEST deployment to Kube cluster on AWS
   - name: shipdemo-kubectl-deploy-test
@@ -17,7 +17,7 @@ jobs:
       - IN: shipdemo-repo
         switch: off
       - IN: shipdemo-cli-kubectl
-      - IN: shipdemo-img-kubectl
+      - IN: shipdemo-img
       - IN: shipdemo-params-test 
       - TASK:
         - script: . $SHIPDEMOREPO_PATH/gitRepo/pipeline/prepEnvironment.sh
