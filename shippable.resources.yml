@@ -17,7 +17,7 @@ resources:
     type: gitRepo
     integration: ttrahan-gh # replace with your GitHub integration name
     pointer:
-      sourceName: shippableSamples/node-build-push-docker-hub-runcli-kubernetes-kubectl # replace with source code location (e.g. GitHub) where you cloned this sample project
+      sourceName: shippableSamples/node-dockerhub-runcli-kubernetes-kubectl # replace with source code location (e.g. GitHub) where you cloned this sample project
       branch: master
   - flags:
     - runCLI-kubernetes-kubectl
