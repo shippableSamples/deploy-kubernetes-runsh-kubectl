@@ -5,13 +5,10 @@
 # see http://docs.shippable.com/pipelines/jobs/runCLI/#resource-variables
 export GIT_REPO_PATH=$SHIPDEMOREPO_PATH
 
-# source functions used in this script
+# source functions used in this script or subsequent scripts
 for f in $GIT_REPO_PATH/gitRepo/pipeline/scriptFunctions/*.* ; do
   source $f ;
 done
-
-# # install shell tools required
-# install_ShellTools
 
 # Leverage the environment variables that were automatically injected
 # into the job environment by Shippable (i.e based on names of Inputs to the
