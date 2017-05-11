@@ -5,20 +5,22 @@ jobs:
 ################################
 
 # runCI job that builds and pushes artifact to S3
-  - name: node-dockerhub-runcli-kubernetes-kubectl_runCI
+  - name: deploy-kubernetes-runcli_runCI
     type: runCI
     steps:
-      - OUT: shipdemo-img
+      - OUT: deploy-kubernetes-runcli-img
+    flags:
+      - deploy-kubernetes-runcli
 
 # TEST deployment to Kube cluster on AWS
-  - name: shipdemo-kubectl-deploy-test
+  - name: deploy-kubernetes-runcli-test
     type: runCLI
     steps:
-      - IN: shipdemo-repo
+      - IN: deploy-kubernetes-runcli-repo
         switch: off
-      - IN: shipdemo-cli-kubectl
-      - IN: shipdemo-img
-      - IN: shipdemo-params-test
+      - IN: deploy-kubernetes-runcli-cli-kubectl
+      - IN: deploy-kubernetes-runcli-img
+      - IN: deploy-kubernetes-runcli-params-test
       - TASK:
         - script: source $SHIPDEMOPARAMSTEST_STATE/params
         - script: echo "deploying to Kubernetes cluster..."
@@ -28,20 +30,20 @@ jobs:
         - script: kubectl apply -f kube-deploy.yaml 
         - script: kubectl rollout status deployments sample-node-ayeaye
     flags:
-      - runCLI-kubernetes-kubectl
+      - deploy-kubernetes-runcli
 
 # PROD deployment to Kube cluster on AWS
-  - name: shipdemo-kubectl-deploy-prod
+  - name: deploy-kubernetes-runcli-prod
     type: runCLI
     steps:
-      - IN: shipdemo-kubectl-deploy-test
+      - IN: deploy-kubernetes-runcli-test
         switch: off
-      - IN: shipdemo-repo
+      - IN: deploy-kubernetes-runcli-repo
         switch: off
-      - IN: shipdemo-cli-kubectl
-      - IN: shipdemo-params-prod
+      - IN: deploy-kubernetes-runcli-cli-kubectl
+      - IN: deploy-kubernetes-runcli-params-prod
       - TASK:
         - script: . $SHIPDEMOREPO_PATH/gitRepo/pipeline/prepEnvironment.sh
         - script: . $SHIPDEMOREPO_PATH/gitRepo/pipeline/deploy.sh
     flags:
-      - runCLI-kubernetes-kubectl
+      - deploy-kubernetes-runcli
