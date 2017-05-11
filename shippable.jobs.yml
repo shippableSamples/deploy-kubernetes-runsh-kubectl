@@ -24,8 +24,8 @@ jobs:
         - script: echo "deploying to Kubernetes cluster..."
         - script: kubectl config use-context $CLUSTER
         - script: pushd $SHIPDEMOREPO_STATE
-        - script: shippable_replace sample-node-ayeaye.yaml
-        - script: kubectl apply -f sample-node-ayeaye.yaml 
+        - script: shippable_replace kube-deploy.yaml
+        - script: kubectl apply -f kube-deploy.yaml 
         - script: kubectl rollout status deployments sample-node-ayeaye
     flags:
       - runCLI-kubernetes-kubectl
