@@ -5,7 +5,7 @@ jobs:
 ################################
 
 # runCI job that builds and pushes artifact to S3
-  - name: deploy_kubernetes_runcli_runCI
+  - name: deploy-kubernetes-runcli_runCI
     type: runCI
     steps:
       - OUT: deploy_kubernetes_runcli_img
@@ -43,7 +43,7 @@ jobs:
       - IN: deploy_kubernetes_runcli_cli_kubectl
       - IN: deploy_kubernetes_runcli_params_prod
       - TASK:
-        - script: . $SHIPDEMOREPO_PATH/gitRepo/pipeline/prepEnvironment.sh
-        - script: . $SHIPDEMOREPO_PATH/gitRepo/pipeline/deploy.sh
+        - script: . $DEPLOY_KUBERNETES_RUNCLI_PATH/gitRepo/pipeline/prepEnvironment.sh
+        - script: . $DEPLOY_KUBERNETES_RUNCLI_PATH/gitRepo/pipeline/deploy.sh
     flags:
       - deploy_kubernetes_runcli
