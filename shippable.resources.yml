@@ -7,7 +7,7 @@ resources:
 # config for kubectl config
   - name: deploy_kubernetes_runcli_cli_kubectl
     type: cliConfig
-    integration: ttrahan_kube
+    integration: ttrahan-kube
 
 ################################
 # Sample Node Aye_Aye component
@@ -15,7 +15,7 @@ resources:
 # GitHub repo holding scripts to be used in runsh pipeline job
   - name: deploy_kubernetes_runcli_repo
     type: gitRepo
-    integration: ttrahan_gh # replace with your GitHub integration name
+    integration: ttrahan-gh # replace with your GitHub integration name
     pointer:
       sourceName: ttrahan/deploy_kubernetes_runcli # replace with source code location (e.g. GitHub) where you cloned this sample project
       branch: master
@@ -25,7 +25,7 @@ resources:
 # Docker Image
   - name: deploy_kubernetes_runcli_img
     type: image
-    integration: ttrahan_dh # replace with your Registry/Hub integration name
+    integration: ttrahan-dh # replace with your Registry/Hub integration name
     pointer:
       sourceName: ttrahan/deploy_kubernetes_runcli # replace with docker registry location where you push the images
     seed:
