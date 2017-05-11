@@ -20,8 +20,14 @@ jobs:
       - IN: shipdemo-img
       - IN: shipdemo-params-test
       - TASK:
-        - script: . $SHIPDEMOREPO_PATH/gitRepo/pipeline/prepEnvironment.sh
-        - script: . $SHIPDEMOREPO_PATH/gitRepo/pipeline/deploy.sh
+        - script: source $SHIPDEMOPARAMSTEST_STATE/params
+        - script: echo "deploying to Kubernetes cluster..."
+        - script: kubectl config use-context $CLUSTER
+        - script: pushd $SHIPDEMOREPO_STATE
+        - script: shippable_replace sample-node-ayeaye.yaml
+        - script: kubectl apply -f sample-node-ayeaye.yaml 
+        - script: kubectl rollout status deployments sample-node-ayeaye
+        - script: save_state_variables SAMPLE_IMAGE_URL SAMPLE_IMAGE_TAG
     flags:
       - runCLI-kubernetes-kubectl
 
