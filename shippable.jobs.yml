@@ -22,7 +22,7 @@ jobs:
       - IN: deploy_kubernetes_runcli_img
       - IN: deploy_kubernetes_runcli_params_test
       - TASK:
-        - script: ls $DEPLOY_KUBERNETES_RUNCLI_PARAMS_TEST_STATE
+        - script: echo $DEPLOY_KUBERNETES_RUNCLI_PARAMS_TEST_STATE
         - script: printenv
         - script: echo "deploying to Kubernetes cluster..."
         - script: pushd $DEPLOY_KUBERNETES_RUNCLI_REPO_STATE
