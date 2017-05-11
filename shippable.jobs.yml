@@ -27,7 +27,6 @@ jobs:
         - script: shippable_replace sample-node-ayeaye.yaml
         - script: kubectl apply -f sample-node-ayeaye.yaml 
         - script: kubectl rollout status deployments sample-node-ayeaye
-        - script: save_state_variables SAMPLE_IMAGE_URL SAMPLE_IMAGE_TAG
     flags:
       - runCLI-kubernetes-kubectl
 
