@@ -24,7 +24,6 @@ jobs:
       - TASK:
         - script: source $DEPLOY_KUBERNETES_RUNCLI_PARAMS_TEST_STATE
         - script: echo "deploying to Kubernetes cluster..."
-        - script: kubectl config use_context $CLUSTER
         - script: pushd $DEPLOY_KUBERNETES_RUNCLI_REPO_STATE
         - script: shippable_replace kube_deploy.yaml
         - script: kubectl apply -f kube_deploy.yaml 
