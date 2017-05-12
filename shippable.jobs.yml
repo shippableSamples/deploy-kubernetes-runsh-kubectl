@@ -39,7 +39,7 @@ jobs:
         - script: kubectl rollout status deployments sample-node-ayeaye --namespace test
         # save image state
         - script: >
-            echo -e "IMAGE_TAG=$IMAGE_TAG"\n 
+            echo -e "IMAGE_TAG=$IMAGE_TAG\n" 
             "IMAGE_URL=$IMAGE_URL"
             > $DEPLOY_KUBERNETES_RUNCLI_TEST_STATE/latest_test_deploy.env
     flags:
