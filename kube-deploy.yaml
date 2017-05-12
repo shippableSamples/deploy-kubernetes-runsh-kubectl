@@ -2,7 +2,8 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   # Unique key of the Deployment instance
-  name: sample-node-ayeaye-$ENVIRONMENT
+  name: sample-node-ayeaye
+  namespace: $ENVIRONMENT
 spec:
   # 3 Pods should exist at all times.
   replicas: $REPLICAS
