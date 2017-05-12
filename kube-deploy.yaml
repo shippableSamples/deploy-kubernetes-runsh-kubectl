@@ -5,7 +5,7 @@ metadata:
   name: sample-node-ayeaye-$ENVIRONMENT
 spec:
   # 3 Pods should exist at all times.
-  replicas: $SAMPLE_REPLICAS
+  replicas: $REPLICAS
   # Keep record of 10 revisions for rollback
   revisionHistoryLimit: 10
   template:
@@ -18,15 +18,15 @@ spec:
     spec:
       containers:
       - name: sample-node-ayeaye
-        image: $SAMPLE_IMAGE_URL:$SAMPLE_IMAGE_TAG
+        image: $IMAGE_URL:$IMAGE_TAG
         ports:
-        - containerPort: $SAMPLE_PORT
+        - containerPort: $PORT
         env:
         - name: ENVIRONMENT
           value: "$ENVIRONMENT"
         - name: PORT
-          value: "$SAMPLE_PORT"
+          value: "$PORT"
         resources:
           requests:
-            memory: $SAMPLE_MEMORY
-            cpu: $SAMPLE_CPU
+            memory: $MEMORY
+            cpu: $CPU
