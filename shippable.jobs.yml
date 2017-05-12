@@ -36,7 +36,7 @@ jobs:
         - script: cat kube-deploy.yaml
         # deploy to cluster and verify success
         - script: kubectl apply -f kube-deploy.yaml 
-        - script: kubectl rollout status deployments sample-node-ayeaye-test
+        - script: kubectl rollout status deployments sample-node-ayeaye --namespace $ENVIRONMENT
     flags:
       - deploy_kubernetes_runcli
 
@@ -51,7 +51,17 @@ jobs:
       - IN: deploy_kubernetes_runcli_cli_kubectl
       - IN: deploy_kubernetes_runcli_params_prod
       - TASK:
-        - script: . $DEPLOY_KUBERNETES_RUNCLI_PATH/gitRepo/pipeline/prepEnvironment.sh
-        - script: . $DEPLOY_KUBERNETES_RUNCLI_PATH/gitRepo/pipeline/deploy.sh
+        - script: |
+            set -a
+            source $DEPLOY_KUBERNETES_RUNCLI_PARAMS_PROD_STATE
+            set +a
+        - script: echo "deploying to Kubernetes cluster..."
+        # update kubernetes yaml file(s)
+        - script: cd $DEPLOY_KUBERNETES_RUNCLI_REPO_STATE
+        - script: shippable_replace kube-deploy.yaml
+        - script: cat kube-deploy.yaml
+        # deploy to cluster and verify success
+        - script: kubectl apply -f kube-deploy.yaml 
+        - script: kubectl rollout status deployments sample-node-ayeaye --namespace $ENVIRONMENT
     flags:
       - deploy_kubernetes_runcli
