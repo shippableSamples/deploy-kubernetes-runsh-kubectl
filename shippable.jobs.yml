@@ -22,10 +22,13 @@ jobs:
       - IN: deploy_kubernetes_runcli_img
       - IN: deploy_kubernetes_runcli_params_test
       - TASK:
-        - script: cat $DEPLOY_KUBERNETES_RUNCLI_PARAMS_TEST_STATE
-        - script: set -a && source $DEPLOY_KUBERNETES_RUNCLI_PARAMS_TEST_STATE && set +a
-        - script: echo $ENVIRONMENT
-        - script: printenv
+        # set environment variables
+        - script: |
+            set -a
+            source $DEPLOY_KUBERNETES_RUNCLI_PARAMS_TEST_STATE
+            IMAGE_URL=$DEPLOY_KUBERNETES_RUNCLI_IMG_SOURCENAME
+            IMAGE_TAG=$DEPLOY_KUBERNETES_RUNCLI_IMG_VERSIONNAME
+            set +a
         - script: echo "deploying to Kubernetes cluster..."
         - script: cd $DEPLOY_KUBERNETES_RUNCLI_REPO_STATE
         - script: shippable_replace kube-deploy.yaml
