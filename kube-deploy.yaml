@@ -5,7 +5,6 @@ metadata:
   name: sample-node-ayeaye
   namespace: $ENVIRONMENT
 spec:
-  # 3 Pods should exist at all times.
   replicas: $REPLICAS
   # Keep record of 10 revisions for rollback
   revisionHistoryLimit: 10
