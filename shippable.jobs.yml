@@ -37,6 +37,8 @@ jobs:
         # deploy to cluster and verify success
         - script: kubectl apply -f kube-deploy.yaml 
         - script: kubectl rollout status deployments sample-node-ayeaye --namespace $ENVIRONMENT
+        # save image state
+        - script: echo -e "IMAGE_TAG=$IMAGE_TAG" > $DEPLOY_KUBERNETES_RUNCLI_TEST_STATE/latest_test_deploy.env
     flags:
       - deploy_kubernetes_runcli
 
@@ -53,6 +55,7 @@ jobs:
       - TASK:
         - script: |
             set -a
+            source $DEPLOY_KUBERNETES_RUNCLI_TEST_STATE/latest_test_deploy.env
             source $DEPLOY_KUBERNETES_RUNCLI_PARAMS_PROD_STATE
             set +a
         - script: echo "deploying to Kubernetes cluster..."
@@ -63,5 +66,7 @@ jobs:
         # deploy to cluster and verify success
         - script: kubectl apply -f kube-deploy.yaml 
         - script: kubectl rollout status deployments sample-node-ayeaye --namespace $ENVIRONMENT
+        # save image state
+        - script: echo -e "IMAGE_TAG=$IMAGE_TAG" > $DEPLOY_KUBERNETES_RUNCLI_PROD_STATE/latest_prod_deploy.env
     flags:
       - deploy_kubernetes_runcli
