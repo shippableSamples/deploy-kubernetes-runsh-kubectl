@@ -42,7 +42,7 @@ resources:
     version:
       params:
         CLUSTER: "useast1.dev.example_kube_cluster.com" # replace with your cluster domain name
-        ENVIRONMENT: "TEST"
+        ENVIRONMENT: "test"
         PORT: 80
         MEMORY: 64
         CPUSHARES: .25
@@ -59,7 +59,7 @@ resources:
     version:
       params:
         CLUSTER: "useast1.dev.example_kube_cluster.com" # replace with your cluster domain name
-        ENVIRONMENT: "PROD"
+        ENVIRONMENT: "prod"
         PORT: 80
         MEMORY: 128
         CPUSHARES: .5

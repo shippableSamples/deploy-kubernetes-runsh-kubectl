@@ -30,9 +30,11 @@ jobs:
             IMAGE_TAG=$DEPLOY_KUBERNETES_RUNCLI_IMG_VERSIONNAME
             set +a
         - script: echo "deploying to Kubernetes cluster..."
+        # update kubernetes yaml file(s)
         - script: cd $DEPLOY_KUBERNETES_RUNCLI_REPO_STATE
         - script: shippable_replace kube-deploy.yaml
         - script: cat kube-deploy.yaml
+        # deploy to cluster and verify success
         - script: kubectl apply -f kube-deploy.yaml 
         - script: kubectl rollout status deployments sample_node_ayeaye
     flags:
