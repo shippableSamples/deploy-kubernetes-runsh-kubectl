@@ -28,7 +28,7 @@ jobs:
         - script: printenv
         - script: echo "deploying to Kubernetes cluster..."
         - script: cd $DEPLOY_KUBERNETES_RUNCLI_REPO_STATE
-        - script: echo $ENVIRONMENT
+        - script: export ENVIRONMENT
         - script: shippable_replace kube-deploy.yaml
         - script: cat kube-deploy.yaml
         - script: kubectl apply -f kube-deploy.yaml 
