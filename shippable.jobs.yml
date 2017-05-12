@@ -53,6 +53,7 @@ jobs:
       - IN: deploy_kubernetes_runcli_cli_kubectl
       - IN: deploy_kubernetes_runcli_params_prod
       - TASK:
+        # set environment variables
         - script: |
             set -a
             source $DEPLOY_KUBERNETES_RUNCLI_TEST_STATE/latest_test_deploy.env
