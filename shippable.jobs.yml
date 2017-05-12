@@ -38,7 +38,10 @@ jobs:
         - script: kubectl apply -f kube-deploy.yaml 
         - script: kubectl rollout status deployments sample-node-ayeaye --namespace $ENVIRONMENT
         # save image state
-        - script: echo -e "IMAGE_TAG=$IMAGE_TAG" > $DEPLOY_KUBERNETES_RUNCLI_TEST_STATE/latest_test_deploy.env
+        - script: >
+            echo -e "IMAGE_TAG=$IMAGE_TAG"\n 
+            "IMAGE_URL=$IMAGE_URL"
+            > $DEPLOY_KUBERNETES_RUNCLI_TEST_STATE/latest_test_deploy.env
     flags:
       - deploy_kubernetes_runcli
 
