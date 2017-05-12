@@ -36,7 +36,7 @@ jobs:
         - script: cat kube-deploy.yaml
         # deploy to cluster and verify success
         - script: kubectl apply -f kube-deploy.yaml 
-        - script: kubectl rollout status deployments sample_node_ayeaye
+        - script: kubectl rollout status deployments sample-node-ayeaye-test
     flags:
       - deploy_kubernetes_runcli
 
