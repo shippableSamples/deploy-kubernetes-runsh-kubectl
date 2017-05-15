@@ -8,6 +8,11 @@ spec:
   replicas: $REPLICAS
   # Keep record of 10 revisions for rollback
   revisionHistoryLimit: 10
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
   template:
     metadata:
       labels:
