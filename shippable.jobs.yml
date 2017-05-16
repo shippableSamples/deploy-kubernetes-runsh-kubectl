@@ -35,7 +35,7 @@ jobs:
         - script: shippable_replace kube-deploy.yaml
         - script: cat kube-deploy.yaml
         # deploy to cluster and verify success
-        - script: kubectl apply -f kube-deploy.yaml --rollback=true 
+        - script: kubectl apply -f kube-deploy.yaml
         - script: kubectl rollout status deployments sample-node-ayeaye --namespace test
         # save image state
         - script: >
@@ -68,7 +68,7 @@ jobs:
         - script: shippable_replace kube-deploy.yaml
         - script: cat kube-deploy.yaml
         # deploy to cluster and verify success
-        - script: kubectl apply -f kube-deploy.yaml --rollback=true 
+        - script: kubectl apply -f kube-deploy.yaml
         - script: kubectl rollout status deployments sample-node-ayeaye --namespace prod
         # save image state
         - script: echo -e "IMAGE_TAG=$IMAGE_TAG" > $DEPLOY_KUBERNETES_RUNCLI_PROD_STATE/latest_prod_deploy.env
