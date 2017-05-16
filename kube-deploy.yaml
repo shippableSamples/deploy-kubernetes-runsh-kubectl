@@ -13,6 +13,8 @@ spec:
     rollingUpdate:
       maxSurge: 1
       maxUnavailable: 0
+  minReadySeconds: 5
+  progressDeadlineSeconds: 6
   template:
     metadata:
       labels:
