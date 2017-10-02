@@ -5,33 +5,33 @@ jobs:
 ################################
 
 # runCI job that builds and pushes artifact to S3
-  - name: deploy-kubernetes-runcli_runCI
+  - name: deploy-kubernetes-runsh_runCI
     type: runCI
     steps:
-      - OUT: deploy_kubernetes_runcli_img
+      - OUT: deploy_kubernetes_runsh_img
     flags:
-      - deploy_kubernetes_runcli
+      - deploy_kubernetes_runsh
 
 # TEST deployment to Kube cluster on AWS
-  - name: deploy_kubernetes_runcli_test
+  - name: deploy_kubernetes_runsh_test
     type: runSh
     steps:
-      - IN: deploy_kubernetes_runcli_repo
+      - IN: deploy_kubernetes_runsh_repo
         switch: off
-      - IN: deploy_kubernetes_runcli_cli_kubectl
-      - IN: deploy_kubernetes_runcli_img
-      - IN: deploy_kubernetes_runcli_params_test
+      - IN: deploy_kubernetes_runsh_cli_kubectl
+      - IN: deploy_kubernetes_runsh_img
+      - IN: deploy_kubernetes_runsh_params_test
       - TASK:
         # set environment variables
         - script: |
             set -a
-            source $DEPLOY_KUBERNETES_RUNCLI_PARAMS_TEST_STATE
-            IMAGE_URL=$DEPLOY_KUBERNETES_RUNCLI_IMG_SOURCENAME
-            IMAGE_TAG=$DEPLOY_KUBERNETES_RUNCLI_IMG_VERSIONNAME
+            source $DEPLOY_KUBERNETES_RUNSH_PARAMS_TEST_STATE
+            IMAGE_URL=$DEPLOY_KUBERNETES_RUNSH_IMG_SOURCENAME
+            IMAGE_TAG=$DEPLOY_KUBERNETES_RUNSH_IMG_VERSIONNAME
             set +a
         - script: echo "deploying to Kubernetes cluster..."
         # update kubernetes yaml file(s)
-        - script: cd $DEPLOY_KUBERNETES_RUNCLI_REPO_STATE
+        - script: cd $DEPLOY_KUBERNETES_RUNSH_REPO_STATE
         - script: shippable_replace kube-deploy.yaml
         - script: cat kube-deploy.yaml
         # deploy to cluster and verify success
@@ -42,36 +42,36 @@ jobs:
         - script: >
             echo -e "IMAGE_TAG=$IMAGE_TAG\n" 
             "IMAGE_URL=$IMAGE_URL"
-            > $DEPLOY_KUBERNETES_RUNCLI_TEST_STATE/latest_test_deploy.env
+            > $DEPLOY_KUBERNETES_RUNSH_TEST_STATE/latest_test_deploy.env
     flags:
-      - deploy_kubernetes_runcli
+      - deploy_kubernetes_runsh
 
 # PROD deployment to Kube cluster on AWS
-  - name: deploy_kubernetes_runcli_prod
+  - name: deploy_kubernetes_runsh_prod
     type: runSh
     steps:
-      - IN: deploy_kubernetes_runcli_test
+      - IN: deploy_kubernetes_runsh_test
         switch: off
-      - IN: deploy_kubernetes_runcli_repo
+      - IN: deploy_kubernetes_runsh_repo
         switch: off
-      - IN: deploy_kubernetes_runcli_cli_kubectl
-      - IN: deploy_kubernetes_runcli_params_prod
+      - IN: deploy_kubernetes_runsh_cli_kubectl
+      - IN: deploy_kubernetes_runsh_params_prod
       - TASK:
         # set environment variables
         - script: |
             set -a
-            source $DEPLOY_KUBERNETES_RUNCLI_TEST_STATE/latest_test_deploy.env
-            source $DEPLOY_KUBERNETES_RUNCLI_PARAMS_PROD_STATE
+            source $DEPLOY_KUBERNETES_RUNSH_TEST_STATE/latest_test_deploy.env
+            source $DEPLOY_KUBERNETES_RUNSH_PARAMS_PROD_STATE
             set +a
         - script: echo "deploying to Kubernetes cluster..."
         # update kubernetes yaml file(s)
-        - script: cd $DEPLOY_KUBERNETES_RUNCLI_REPO_STATE
+        - script: cd $DEPLOY_KUBERNETES_RUNSH_REPO_STATE
         - script: shippable_replace kube-deploy.yaml
         - script: cat kube-deploy.yaml
         # deploy to cluster and verify success
         - script: kubectl apply -f kube-deploy.yaml
         - script: kubectl rollout status deployments sample-node-ayeaye --namespace prod
         # save image state
-        - script: echo -e "IMAGE_TAG=$IMAGE_TAG" > $DEPLOY_KUBERNETES_RUNCLI_PROD_STATE/latest_prod_deploy.env
+        - script: echo -e "IMAGE_TAG=$IMAGE_TAG" > $DEPLOY_KUBERNETES_RUNSH_PROD_STATE/latest_prod_deploy.env
     flags:
-      - deploy_kubernetes_runcli
+      - deploy_kubernetes_runsh

@@ -5,7 +5,7 @@ resources:
 ################################
 
 # config for kubectl config
-  - name: deploy_kubernetes_runcli_cli_kubectl
+  - name: deploy_kubernetes_runsh_cli_kubectl
     type: cliConfig
     integration: ttrahan-kube
 
@@ -13,17 +13,17 @@ resources:
 # Sample Node Aye_Aye component
 
 # GitHub repo holding scripts to be used in runsh pipeline job
-  - name: deploy_kubernetes_runcli_repo
+  - name: deploy_kubernetes_runsh_repo
     type: gitRepo
     integration: ttrahan-gh # replace with your GitHub integration name
     pointer:
       sourceName: ttrahan/deploy-kubernetes-runcli # replace with source code location (e.g. GitHub) where you cloned this sample project
       branch: master
     flags:
-      - deploy_kubernetes_runcli
+      - deploy_kubernetes_runsh
 
 # Docker Image
-  - name: deploy_kubernetes_runcli_img
+  - name: deploy_kubernetes_runsh_img
     type: image
     integration: ttrahan-dh # replace with your Registry/Hub integration name
     pointer:
@@ -31,13 +31,13 @@ resources:
     seed:
       versionName: master.1
     flags:
-      - deploy_kubernetes_runcli
+      - deploy_kubernetes_runsh
 
 ################################
 # TEST environment
 
 # env vars - Test environment
-  - name: deploy_kubernetes_runcli_params_test
+  - name: deploy_kubernetes_runsh_params_test
     type: params
     version:
       params:
@@ -48,13 +48,13 @@ resources:
         CPUSHARES: .25
         REPLICAS: 1
     flags:
-      - deploy_kubernetes_runcli
+      - deploy_kubernetes_runsh
 
 ################################
 # PROD environment
 
 # env vars - Prod environment
-  - name: deploy_kubernetes_runcli_params_prod
+  - name: deploy_kubernetes_runsh_params_prod
     type: params
     version:
       params:
@@ -65,4 +65,4 @@ resources:
         CPUSHARES: .5
         REPLICAS: 2 
     flags:
-      - deploy_kubernetes_runcli
+      - deploy_kubernetes_runsh
