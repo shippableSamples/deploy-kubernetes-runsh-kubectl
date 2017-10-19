@@ -5,7 +5,7 @@ resources:
 ################################
 
 # config for kubectl config
-  - name: deploy_kubernetes_runsh_cli_kubectl
+  - name: deploy_kube_runsh_cli_kubectl
     type: cliConfig
     integration: ttrahan-kube
 
@@ -13,31 +13,31 @@ resources:
 # Sample Node Aye_Aye component
 
 # GitHub repo holding scripts to be used in runsh pipeline job
-  - name: deploy_kubernetes_runsh_repo
+  - name: deploy_kube_runsh_repo
     type: gitRepo
     integration: ttrahan-gh # replace with your GitHub integration name
     pointer:
-      sourceName: ttrahan/deploy-kubernetes-runcli # replace with source code location (e.g. GitHub) where you cloned this sample project
+      sourceName: ttrahan/deploy-kubernetes-runsh-kubectl # replace with source code location (e.g. GitHub) where you cloned this sample project
       branch: master
     flags:
-      - deploy_kubernetes_runsh
+      - deploy_kube_runsh_kubectl
 
 # Docker Image
-  - name: deploy_kubernetes_runsh_img
+  - name: deploy_kube_runsh_img
     type: image
     integration: ttrahan-dh # replace with your Registry/Hub integration name
     pointer:
-      sourceName: ttrahan/deploy-kubernetes-runcli # replace with docker registry location where you push the images
+      sourceName: ttrahan/deploy-kube-runcli # replace with docker registry location where you push the images
     seed:
       versionName: master.1
     flags:
-      - deploy_kubernetes_runsh
+      - deploy_kube_runsh_kubectl
 
 ################################
 # TEST environment
 
 # env vars - Test environment
-  - name: deploy_kubernetes_runsh_params_test
+  - name: deploy_kube_runsh_params_test
     type: params
     version:
       params:
@@ -48,22 +48,22 @@ resources:
         CPUSHARES: .25
         REPLICAS: 1
     flags:
-      - deploy_kubernetes_runsh
+      - deploy_kube_runsh_kubectl
 
 # state output - Test environment
-  - name: deploy_kubernetes_runsh_test_state
+  - name: deploy_kube_runsh_test_state
     type: params
     version:
       params:
         SEED: "placeholder"
     flags:
-      - deploy_kubernetes_runsh
+      - deploy_kube_runsh_kubectl
 
 ################################
 # PROD environment
 
 # env vars - Prod environment
-  - name: deploy_kubernetes_runsh_params_prod
+  - name: deploy_kube_runsh_params_prod
     type: params
     version:
       params:
@@ -74,14 +74,14 @@ resources:
         CPUSHARES: .5
         REPLICAS: 2 
     flags:
-      - deploy_kubernetes_runsh
+      - deploy_kube_runsh_kubectl
 
 # state output - Prod environment
-  - name: deploy_kubernetes_runsh_prod_state
+  - name: deploy_kube_runsh_prod_state
     type: params
     version:
       params:
         SEED: "placeholder"
     flags:
-      - deploy_kubernetes_runsh
+      - deploy_kube_runsh_kubectl
 
