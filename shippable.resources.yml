@@ -50,6 +50,15 @@ resources:
     flags:
       - deploy_kubernetes_runsh
 
+# state output - Test environment
+  - name: deploy_kubernetes_runsh_test_state
+    type: params
+    version:
+      params:
+        SEED: "placeholder"
+    flags:
+      - deploy_kubernetes_runsh
+
 ################################
 # PROD environment
 
@@ -66,3 +75,13 @@ resources:
         REPLICAS: 2 
     flags:
       - deploy_kubernetes_runsh
+
+# state output - Prod environment
+  - name: deploy_kubernetes_runsh_prod_state
+    type: params
+    version:
+      params:
+        SEED: "placeholder"
+    flags:
+      - deploy_kubernetes_runsh
+
