@@ -17,7 +17,7 @@ resources:
     type: gitRepo
     integration: ttrahan-gh # replace with your GitHub integration name
     pointer:
-      sourceName: ttrahan/deploy-kubernetes-runsh-kubectl # replace with source code location (e.g. GitHub) where you cloned this sample project
+      sourceName: shippableSamples/deploy-kubernetes-runsh-kubectl # replace with source code location (e.g. GitHub) where you cloned this sample project
       branch: master
     flags:
       - deploy_kube_runsh_kubectl
