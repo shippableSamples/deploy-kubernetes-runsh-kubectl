@@ -9,7 +9,7 @@ jobs:
   - name: deploy-kubernetes-runsh-kubectl_runCI
     type: runCI
     steps:
-      - OUT: deploy_kubernetes_runsh_img
+      - OUT: deploy_kube_runsh_img
     flags:
       - deploy_kube_runsh_kubectl
 
